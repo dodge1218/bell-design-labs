@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, Search, ShieldCheck, Smartphone, Sparkles, Zap } from "lucide-react";
 
 import { JsonLd } from "@/components/seo/json-ld";
 import { Reveal } from "@/components/motion/reveal";
@@ -25,6 +25,13 @@ const heroHighlights = [
   { label: "Core Web Vitals", value: "All green" },
 ];
 
+const trustSignals = [
+  { icon: Zap, title: "Fast builds", detail: "7–14 day launch windows" },
+  { icon: Search, title: "SEO-ready", detail: "Metadata, JSON-LD, sitemap" },
+  { icon: Smartphone, title: "Mobile-first", detail: "Tap targets + clean layouts" },
+  { icon: ShieldCheck, title: "Support", detail: "Direct, fast feedback loops" },
+];
+
 const homeBreadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -42,7 +49,7 @@ export default function HomePage() {
   return (
     <>
       <div className="space-y-20 pb-20 pt-10">
-      <section className="bg-white">
+      <section className="bg-gradient-to-b from-secondary/30 via-background to-background">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <Reveal className="space-y-6">
             <Badge variant="secondary" className="w-fit border border-border bg-secondary text-muted-foreground">
@@ -92,6 +99,25 @@ export default function HomePage() {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4">
+        <div className="grid gap-3 rounded-3xl border border-border bg-card/70 p-6 shadow-sm md:grid-cols-4">
+          {trustSignals.map((signal) => {
+            const Icon = signal.icon;
+            return (
+              <div key={signal.title} className="flex items-start gap-3 rounded-2xl bg-secondary/20 p-4">
+                <div className="mt-0.5 flex size-9 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  <Icon className="size-4" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-900">{signal.title}</p>
+                  <p className="mt-1 text-sm text-slate-600">{signal.detail}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
