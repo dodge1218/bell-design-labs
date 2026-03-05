@@ -45,7 +45,7 @@ export default function HomePage() {
       <section className="bg-white">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <Reveal className="space-y-6">
-            <Badge variant="secondary" className="w-fit border border-slate-200 bg-[#f3f4f6] text-slate-700">
+            <Badge variant="secondary" className="w-fit border border-border bg-secondary text-muted-foreground">
               Conversion-first build sprint
             </Badge>
             <div className="space-y-4">
@@ -66,14 +66,14 @@ export default function HomePage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {heroHighlights.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-slate-200 bg-[#fafafa] p-4">
+                <div key={item.label} className="rounded-2xl border border-border bg-card p-4">
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{item.label}</p>
                   <p className="mt-2 text-xl font-semibold text-slate-900">{item.value}</p>
                 </div>
               ))}
             </div>
           </Reveal>
-          <Reveal className="rounded-3xl border border-slate-200 bg-[#f9fafb] p-8 shadow-sm">
+          <Reveal className="rounded-3xl border border-border bg-secondary/40 p-8 shadow-sm">
             <div className="flex items-center gap-3 text-sm text-slate-600">
               <Sparkles className="size-4" />
               <span>Fast three-step build process</span>
@@ -119,7 +119,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="why-us" className="bg-[#f7f8fb] py-16">
+      <section id="why-us" className="bg-secondary/30 py-16">
         <div className="mx-auto max-w-6xl space-y-10 px-4">
           <SectionHeading
             eyebrow="Why choose us"
@@ -131,7 +131,7 @@ export default function HomePage() {
               <Reveal key={point.title} delay={index * 0.08}>
                 <Card className="h-full border-slate-200 bg-white transition hover:-translate-y-1 hover:shadow-lg">
                   <CardHeader>
-                    <Badge variant="secondary" className="w-fit border border-slate-200 bg-[#f5f5f5] text-slate-700">
+                    <Badge variant="secondary" className="w-fit border border-border bg-secondary text-muted-foreground">
                       {point.title}
                     </Badge>
                     <CardDescription className="text-base text-slate-600">
@@ -145,7 +145,7 @@ export default function HomePage() {
           <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
             <Table>
               <TableHeader>
-                <TableRow className="bg-[#f5f5f5]">
+                <TableRow className="bg-secondary">
                   <TableHead>Attribute</TableHead>
                   <TableHead>DreamSite Builders</TableHead>
                   <TableHead>Freelancers</TableHead>
@@ -191,7 +191,7 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
-        <div className="flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-slate-200 bg-[#f8fafc] px-6 py-8">
+        <div className="flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-border bg-secondary/30 px-6 py-8">
           <div>
             <p className="text-lg font-semibold text-slate-900">Ready in under two weeks</p>
             <p className="text-sm text-slate-600">Submit your intake today and get a full site preview this week.</p>
