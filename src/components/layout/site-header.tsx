@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 
@@ -17,12 +18,30 @@ import {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = siteConfig.navLinks;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-300",
+        scrolled
+          ? "border-b border-white/30 bg-white/80 shadow-[0_20px_60px_rgba(15,23,42,0.15)] backdrop-blur-2xl"
+          : "border-transparent bg-white/60 backdrop-blur-xl"
+      )}
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
         <Link href="/" className="text-lg font-semibold tracking-tight text-slate-900">
           DreamSite Builders
         </Link>
@@ -32,7 +51,7 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               className={cn(
-                "transition-colors hover:text-slate-900",
+                "rounded-full px-2 py-1 transition-colors hover:text-slate-900",
                 pathname === item.href && "text-slate-950"
               )}
             >
@@ -41,7 +60,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="hidden lg:flex">
-          <Button asChild className="px-6 shadow-sm">
+          <Button asChild className="rounded-2xl px-6 py-2 shadow-[0_10px_35px_rgba(79,70,229,0.35)]">
             <Link href="/start-project">Start a Project</Link>
           </Button>
         </div>
@@ -59,12 +78,12 @@ function MobileMenu() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" className="rounded-2xl">
           <Menu className="size-5" />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-full max-w-sm">
+      <DialogContent className="w-full max-w-sm rounded-3xl">
         <DialogHeader>
           <DialogTitle>Navigate</DialogTitle>
         </DialogHeader>
